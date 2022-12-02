@@ -1,0 +1,21 @@
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\bin\Debug\net6.0-windows\project ict thomas is git.exe
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\bin\Debug\net6.0-windows\project ict thomas is git.deps.json
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\bin\Debug\net6.0-windows\project ict thomas is git.runtimeconfig.json
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\bin\Debug\net6.0-windows\project ict thomas is git.dll
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\bin\Debug\net6.0-windows\project ict thomas is git.pdb
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict thomas is git.csproj.AssemblyReference.cache
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict thomas is git_MarkupCompile.cache
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict thomas is git_MarkupCompile.lref
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\MainWindow.baml
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict thomas is git.g.resources
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict thomas is git.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict thomas is git.AssemblyInfoInputs.cache
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict thomas is git.AssemblyInfo.cs
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict thomas is git.csproj.CoreCompileInputs.cache
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict thomas is git.dll
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\refint\project ict thomas is git.dll
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict thomas is git.pdb
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict thomas is git.genruntimeconfig.cache
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\ref\project ict thomas is git.dll

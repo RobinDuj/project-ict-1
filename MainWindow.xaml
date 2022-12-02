@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project_ict_thomas_is_git"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="MainWindow" SizeToContent="Height" Width="400" ResizeMode="NoResize" Closed="Window_Closed">
+    <StackPanel>
+        <GroupBox Header="Kies je poort" Margin="10">
+            <ComboBox Name="cbxPortName" Margin="10" SelectionChanged="cbxPortName_SelectionChanged"></ComboBox>
+        </GroupBox>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnStart" Content="Start" Margin="5,5,5,5" Click="btnStart_Click"></Button>
+            <Button x:Name="btnStop" Content="Stop" Margin="5,5,5,5" Click="btnStop_Click" Grid.Column="1"></Button>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="5,5,5,5">
+                <Label Name="lblScore" Content="Score:" Margin="5,5,5,5"></Label>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="5,5,5,5" Grid.Column="1">
+                <Label Name="lblletter" Content="Letter:" Margin="5,5,5,5" Grid.Column="1"></Label>
+            </Border>
+        </Grid>
+    </StackPanel>
 </Window>
