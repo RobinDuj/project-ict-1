@@ -28,12 +28,12 @@ namespace project_ict_thomas_is_git
     public partial class MainWindow : Window
     {
         SerialPort serialPort = new SerialPort();
-        char dataToets;
-        //byte[] dataToets = new byte[1];
-        //serialport.writeline();
+        //char dataToets;
         bool i = true;
+        bool spelBezig = false;
         char letter;
         int tijd = 0;
+        int tijdTimer = 400;
         Score score = new Score();
         RandomLetters randomLetters = new RandomLetters();
         System.Timers.Timer aTimer = new System.Timers.Timer();
@@ -43,9 +43,9 @@ namespace project_ict_thomas_is_git
             cbxPortName.Items.Add("None");
             foreach (string s in SerialPort.GetPortNames())
             cbxPortName.Items.Add(s);
-
+            //int tijdTimer = 200;
             aTimer.Elapsed += new ElapsedEventHandler(Timer_Tick);
-            aTimer.Interval = 5000;
+            aTimer.Interval = tijdTimer;
             //aTimer.Enabled = true;
         }
 
@@ -85,7 +85,8 @@ namespace project_ict_thomas_is_git
                 }
                 else
                 {
-
+                    MessageBox.Show("Kies een COM-poort.", "Fout",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
 
@@ -93,31 +94,34 @@ namespace project_ict_thomas_is_git
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            if (i)
+            if ((i) && (serialPort != null))
             {
+                serialPort.WriteLine("Welkom");
                 score.Null();
-                RandomLetters randomLetters = new RandomLetters();
                 letter = randomLetters.GetLetter();
                 lblletter.Content = $"Letter: {letter}";
                 serialPort.WriteLine($"{letter}");
                 i = false;
-                txbx1.Clear();
+                spelBezig = true;
+                tijdTimer = 400;
                 aTimer.Enabled = true;
-                //inlezenCijfers();
+                lblletter.Content = "Letter:";
+                lblScore.Content = "Score:";
             }
             
         }        
         private void Timer_Tick(object sender, EventArgs e)
         {
+           if(spelBezig)
             inlezenCijfers();
         }
+        char textInput;
         private void inlezenCijfers()
         {
-            char textInput = Convert.ToChar(txbx1.Text);
-
             if (textInput == letter)
             {
                 score.Verhogen();
+                VolgendCijfer();
             }
             else if (tijd == 1)   //1
             {
@@ -187,20 +191,147 @@ namespace project_ict_thomas_is_git
         }
         private void gameOver()
         {
-
+            serialPort.WriteLine($"Game Over, Score{score}");
+            i = true;
+            spelBezig = false;
+            tijd = 0;
+            lblletter.Content = "Letter:";
         }
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
-
+            serialPort.WriteLine("Gestopt");
+            i = true;
+            spelBezig= false;
+            tijd = 0;
+            lblletter.Content = "Letter:";
         }
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            //string ch = ((Char)e.KeyCode).ToString();
+            if (e.Key == Key.A)
+            {
+                textInput = 'a';
+            }
+            else if (e.Key == Key.B)
+            {
+                textInput = 'b';
+            }
+            if (e.Key == Key.C)
+            {
+                textInput = 'c';
+            }
+            else if (e.Key == Key.D)
+            {
+                textInput = 'd';
+            }
+            if (e.Key == Key.E)
+            {
+                textInput = 'e';
+            }
+            else if (e.Key == Key.F)
+            {
+                textInput = 'f';
+            }
+            if (e.Key == Key.G)
+            {
+                textInput = 'g';
+            }
+            else if (e.Key == Key.H)
+            {
+                textInput = 'h';
+            }
+            if (e.Key == Key.I)
+            {
+                textInput = 'i';
+            }
+            else if (e.Key == Key.J)
+            {
+                textInput = 'j';
+            }
+            if (e.Key == Key.K)
+            {
+                textInput = 'k';
+            }
+            else if (e.Key == Key.L)
+            {
+                textInput = 'l';
+            }
+            if (e.Key == Key.M)
+            {
+                textInput = 'm';
+            }
+            else if (e.Key == Key.N)
+            {
+                textInput = 'n';
+            }
+            if (e.Key == Key.O)
+            {
+                textInput = 'o';
+            }
+            else if (e.Key == Key.P)
+            {
+                textInput = 'p';
+            }
+            if (e.Key == Key.Q)
+            {
+                textInput = 'q';
+            }
+            else if (e.Key == Key.R)
+            {
+                textInput = 'r';
+            }
+            if (e.Key == Key.S)
+            {
+                textInput = 's';
+            }
+            else if (e.Key == Key.T)
+            {
+                textInput = 't';
+            }
+            if (e.Key == Key.U)
+            {
+                textInput = 'u';
+            }
+            else if (e.Key == Key.V)
+            {
+                textInput = 'v';
+            }
+            if (e.Key == Key.W)
+            {
+                textInput = 'w';
+            }
+            else if (e.Key == Key.X)
+            {
+                textInput = 'x';
+            }
+            if (e.Key == Key.Y)
+            {
+                textInput = 'y';
+            }
+            else if (e.Key == Key.Z)
+            {
+                textInput = 'z';
+            }
+            else
+            {
 
-            //if(e.Key == Key.j)
-            //{
-
-            //}
+            }
+            inlezenCijfers();
+        }
+        private void VolgendCijfer()
+        {
+            if(tijdTimer <= 20)
+            {
+                tijdTimer = 20;
+            }
+            else
+            {
+            tijdTimer = tijdTimer - 10; 
+            }
+            tijd = 0;
+            letter = randomLetters.GetLetter();
+            lblScore.Content = $"Score: {score}";
+            lblletter.Content = $"Letter: {letter}";
+            serialPort.WriteLine($"{letter}");
         }
     }
 }

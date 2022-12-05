@@ -30,7 +30,5 @@
                 <Label Name="lblletter" Content="Letter:" Margin="5,5,5,5" Grid.Column="1"></Label>
             </Border>
         </Grid>
-        <Label Content="Typ hieronder de cijfers:" Margin="5,5,5,0"></Label>
-        <TextBox Name="txbx1" Margin="5,5,5,5" Text="Typ hier!!!"></TextBox>
     </StackPanel>
 </Window>

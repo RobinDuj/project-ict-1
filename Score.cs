@@ -8,7 +8,7 @@ namespace project_ict_thomas_is_git
 {
     internal class Score
     {
-        int score;
+        int score = 0;
 
         public string Verhogen()
         {
