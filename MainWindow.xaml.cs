@@ -33,7 +33,8 @@ namespace project_ict_thomas_is_git
         bool spelBezig = false;
         char letter;
         int tijd = 0;
-        int tijdTimer = 400;
+        int tijdTimer;
+        int timerSpel;
         Score score = new Score();
         RandomLetters randomLetters = new RandomLetters();
         System.Timers.Timer aTimer = new System.Timers.Timer();
@@ -43,7 +44,7 @@ namespace project_ict_thomas_is_git
             cbxPortName.Items.Add("None");
             foreach (string s in SerialPort.GetPortNames())
             cbxPortName.Items.Add(s);
-            //int tijdTimer = 200;
+            tijdTimer = 400;
             aTimer.Elapsed += new ElapsedEventHandler(Timer_Tick);
             aTimer.Interval = tijdTimer;
             //aTimer.Enabled = true;
@@ -68,7 +69,6 @@ namespace project_ict_thomas_is_git
             Thread.Sleep(milliseconds);
             serialPort.WriteLine("");
             serialPort.Dispose();
-            serialPort.Close();
         }
 
         private void cbxPortName_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -94,7 +94,7 @@ namespace project_ict_thomas_is_git
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            if ((i) && (serialPort != null))
+            if ((i) && (serialPort != null) && (serialPort.IsOpen))
             {
                 serialPort.WriteLine("Welkom");
                 score.Null();
@@ -105,7 +105,7 @@ namespace project_ict_thomas_is_git
                 spelBezig = true;
                 tijdTimer = 400;
                 aTimer.Enabled = true;
-                lblletter.Content = "Letter:";
+                lblletter.Content = $"Letter: {letter}";
                 lblScore.Content = "Score:";
             }
             
@@ -114,6 +114,8 @@ namespace project_ict_thomas_is_git
         {
            if(spelBezig)
             inlezenCijfers();
+            //if (spelBezig)
+            //    timerSpel++;
         }
         char textInput;
         private void inlezenCijfers()
@@ -121,9 +123,9 @@ namespace project_ict_thomas_is_git
             if (textInput == letter)
             {
                 score.Verhogen();
-                VolgendCijfer();
+                VolgendCijferAsync();
             }
-            else if (tijd == 1)   //1
+            else if (tijd == 1)  //1
             {
                 serialPort.WriteLine($" {letter}");
             }
@@ -185,151 +187,57 @@ namespace project_ict_thomas_is_git
             }
             else if (tijd > 15)
             {
-                gameOver();
+                gameOverAsync();
             }
             tijd++;
         }
-        private void gameOver()
-        {
-            serialPort.WriteLine($"Game Over, Score{score}");
-            i = true;
-            spelBezig = false;
-            tijd = 0;
-            lblletter.Content = "Letter:";
-        }
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
-            serialPort.WriteLine("Gestopt");
-            i = true;
-            spelBezig= false;
-            tijd = 0;
-            lblletter.Content = "Letter:";
+            if ((serialPort != null) && (serialPort.IsOpen))
+            {
+                serialPort.WriteLine("Gestopt");
+                i = true;
+                spelBezig = false;
+                tijd = 0;
+                lblletter.Content = "Letter:";
+            }
         }
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.A)
-            {
-                textInput = 'a';
-            }
-            else if (e.Key == Key.B)
-            {
-                textInput = 'b';
-            }
-            if (e.Key == Key.C)
-            {
-                textInput = 'c';
-            }
-            else if (e.Key == Key.D)
-            {
-                textInput = 'd';
-            }
-            if (e.Key == Key.E)
-            {
-                textInput = 'e';
-            }
-            else if (e.Key == Key.F)
-            {
-                textInput = 'f';
-            }
-            if (e.Key == Key.G)
-            {
-                textInput = 'g';
-            }
-            else if (e.Key == Key.H)
-            {
-                textInput = 'h';
-            }
-            if (e.Key == Key.I)
-            {
-                textInput = 'i';
-            }
-            else if (e.Key == Key.J)
-            {
-                textInput = 'j';
-            }
-            if (e.Key == Key.K)
-            {
-                textInput = 'k';
-            }
-            else if (e.Key == Key.L)
-            {
-                textInput = 'l';
-            }
-            if (e.Key == Key.M)
-            {
-                textInput = 'm';
-            }
-            else if (e.Key == Key.N)
-            {
-                textInput = 'n';
-            }
-            if (e.Key == Key.O)
-            {
-                textInput = 'o';
-            }
-            else if (e.Key == Key.P)
-            {
-                textInput = 'p';
-            }
-            if (e.Key == Key.Q)
-            {
-                textInput = 'q';
-            }
-            else if (e.Key == Key.R)
-            {
-                textInput = 'r';
-            }
-            if (e.Key == Key.S)
-            {
-                textInput = 's';
-            }
-            else if (e.Key == Key.T)
-            {
-                textInput = 't';
-            }
-            if (e.Key == Key.U)
-            {
-                textInput = 'u';
-            }
-            else if (e.Key == Key.V)
-            {
-                textInput = 'v';
-            }
-            if (e.Key == Key.W)
-            {
-                textInput = 'w';
-            }
-            else if (e.Key == Key.X)
-            {
-                textInput = 'x';
-            }
-            if (e.Key == Key.Y)
-            {
-                textInput = 'y';
-            }
-            else if (e.Key == Key.Z)
-            {
-                textInput = 'z';
-            }
-            else
-            {
+            textInput = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+            textInput = char.ToLower(textInput);
 
+            if ((textInput != letter) && (tijd > 0))
+            {
+                gameOverAsync();
             }
             inlezenCijfers();
         }
-        private void VolgendCijfer()
+        private async Task gameOverAsync()
+        {
+            serialPort.WriteLine($"Score: {score.Show()}");
+            i = true;
+            spelBezig = false;
+            tijd = 0;
+            await Task.Run(() => this.Dispatcher.Invoke(() => { lblletter.Content = "Game Over"; }));
+            tijdTimer = 400;
+        }
+        private async Task VolgendCijferAsync()
         {
             if(tijdTimer <= 20)
             {
                 tijdTimer = 20;
+                aTimer.Interval = tijdTimer;
             }
             else
             {
-            tijdTimer = tijdTimer - 10; 
+                tijdTimer = tijdTimer - 10;
+                aTimer.Interval = tijdTimer;
             }
             tijd = 0;
             letter = randomLetters.GetLetter();
-            lblScore.Content = $"Score: {score}";
+            await Task.Run(() => this.Dispatcher.Invoke(() => { lblScore.Content = $"Score: {score.Show()}"; }));
+            //lblScore.Content = $"Score: {score.Show()}";
             lblletter.Content = $"Letter: {letter}";
             serialPort.WriteLine($"{letter}");
         }

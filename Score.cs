@@ -8,7 +8,7 @@ namespace project_ict_thomas_is_git
 {
     internal class Score
     {
-        int score = 0;
+        int score;
 
         public string Verhogen()
         {
@@ -22,7 +22,7 @@ namespace project_ict_thomas_is_git
         }
         public string Show()
         {
-            return $"Score: {score}";
+            return $"{score}";
         }
     }
 }
