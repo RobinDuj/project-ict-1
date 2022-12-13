@@ -19,6 +19,7 @@ using System.Diagnostics;
 using System.Timers;
 using static System.Formats.Asn1.AsnWriter;
 using System.Threading;
+using System.Windows.Documents.Serialization;
 
 namespace project_ict_thomas_is_git
 {
@@ -28,13 +29,13 @@ namespace project_ict_thomas_is_git
     public partial class MainWindow : Window
     {
         SerialPort serialPort = new SerialPort();
-        //char dataToets;
         bool i = true;
         bool spelBezig = false;
         char letter;
         int tijd = 0;
         int tijdTimer;
         int timerSpel;
+        int _verminderingsGraad;
         Score score = new Score();
         RandomLetters randomLetters = new RandomLetters();
         System.Timers.Timer aTimer = new System.Timers.Timer();
@@ -42,15 +43,16 @@ namespace project_ict_thomas_is_git
         {
             InitializeComponent();
             cbxPortName.Items.Add("None");
+            cbxMoeilijkheid.Items.Add("Easy");
+            cbxMoeilijkheid.Items.Add("Hard");
+            cbxMoeilijkheid.Items.Add("Gamer");
             foreach (string s in SerialPort.GetPortNames())
             cbxPortName.Items.Add(s);
             tijdTimer = 400;
             aTimer.Elapsed += new ElapsedEventHandler(Timer_Tick);
             aTimer.Interval = tijdTimer;
-            //aTimer.Enabled = true;
         }
-
-        private void Window_Closed(object sender, EventArgs e)
+        private void Window_Closed(object sender, EventArgs e) //Wanneer het programma wordt afgesloten
         {
             serialPort.WriteLine("Daaaag");
             var milliseconds = 200;
@@ -71,7 +73,7 @@ namespace project_ict_thomas_is_git
             serialPort.Dispose();
         }
 
-        private void cbxPortName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void cbxPortName_SelectionChanged(object sender, SelectionChangedEventArgs e) //Wanneer er een COM-poort wordt geselecteerd
         {
             if (serialPort != null)
             {
@@ -91,8 +93,7 @@ namespace project_ict_thomas_is_git
             }
 
         }
-
-        private void btnStart_Click(object sender, RoutedEventArgs e)
+        private void btnStart_Click(object sender, RoutedEventArgs e)   //start het spel
         {
             if ((i) && (serialPort != null) && (serialPort.IsOpen))
             {
@@ -110,78 +111,76 @@ namespace project_ict_thomas_is_git
             }
             
         }        
-        private void Timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)     //wanneer de tijd van de timer is gepasseerd
         {
            if(spelBezig)
             inlezenCijfers();
-            //if (spelBezig)
-            //    timerSpel++;
         }
         char textInput;
-        private void inlezenCijfers()
+        private void inlezenCijfers()   //Toont de letter op het display
         {
             if (textInput == letter)
             {
                 score.Verhogen();
-                VolgendCijferAsync();
+                VolgendLetterAsync();
             }
-            else if (tijd == 1)  //1
+            else if (tijd == 1)
             {
                 serialPort.WriteLine($" {letter}");
             }
-            else if (tijd == 2)   //2
+            else if (tijd == 2)
             {
                 serialPort.WriteLine($"  {letter}");
             }
-            else if (tijd == 3)   //3
+            else if (tijd == 3)
             {
                 serialPort.WriteLine($"  {letter}");
             }
-            else if (tijd == 4)   //4
+            else if (tijd == 4)
             {
                 serialPort.WriteLine($"   {letter}");
             }
-            else if (tijd == 5)  //5
+            else if (tijd == 5)
             {
                 serialPort.WriteLine($"     {letter}");
             }
-            else if (tijd == 6)  //6
+            else if (tijd == 6)
             {
                 serialPort.WriteLine($"      {letter}");
             }
-            else if (tijd == 7)  //7
+            else if (tijd == 7)
             {
                 serialPort.WriteLine($"       {letter}");
             }
-            else if (tijd == 8)  //8
+            else if (tijd == 8)
             {
                 serialPort.WriteLine($"        {letter}");
             }
-            else if (tijd == 9)  //9
+            else if (tijd == 9)
             {
                 serialPort.WriteLine($"         {letter}");
             }
-            else if (tijd == 10)  //10
+            else if (tijd == 10)
             {
                 serialPort.WriteLine($"          {letter}");
             }
-            else if (tijd == 11)  //11
+            else if (tijd == 11)
             {
                 serialPort.WriteLine($"           {letter}");
             }
-            else if (tijd == 12)  //12
+            else if (tijd == 12)
             {
                 serialPort.WriteLine($"            {letter}");
             }
-            else if (tijd == 13)  //13
+            else if (tijd == 13)
             {
                 serialPort.WriteLine($"             {letter}");
             }
-            else if (tijd == 14)  //14
+            else if (tijd == 14)
             {
                 serialPort.WriteLine($"              {letter}");
             }
-            else if (tijd == 15)  //15
+            else if (tijd == 15)
             {
                 serialPort.WriteLine($"               {letter}");
             }
@@ -191,7 +190,7 @@ namespace project_ict_thomas_is_git
             }
             tijd++;
         }
-        private void btnStop_Click(object sender, RoutedEventArgs e)
+        private void btnStop_Click(object sender, RoutedEventArgs e)    //Stop het spel
         {
             if ((serialPort != null) && (serialPort.IsOpen))
             {
@@ -202,12 +201,12 @@ namespace project_ict_thomas_is_git
                 lblletter.Content = "Letter:";
             }
         }
-        private void Window_KeyDown(object sender, KeyEventArgs e)
+        private void Window_KeyDown(object sender, KeyEventArgs e)      //Als er een toest is ingedrukt
         {
             textInput = (char)KeyInterop.VirtualKeyFromKey(e.Key);
             textInput = char.ToLower(textInput);
 
-            if ((textInput != letter) && (tijd > 0))
+            if ((textInput != letter) && (tijd >= 0))       //test =
             {
                 gameOverAsync();
             }
@@ -222,7 +221,7 @@ namespace project_ict_thomas_is_git
             await Task.Run(() => this.Dispatcher.Invoke(() => { lblletter.Content = "Game Over"; }));
             tijdTimer = 400;
         }
-        private async Task VolgendCijferAsync()
+        private async Task VolgendLetterAsync()     //toon het volgende random letter
         {
             if(tijdTimer <= 20)
             {
@@ -231,15 +230,29 @@ namespace project_ict_thomas_is_git
             }
             else
             {
-                tijdTimer = tijdTimer - 10;
+                tijdTimer = tijdTimer - _verminderingsGraad;
                 aTimer.Interval = tijdTimer;
             }
             tijd = 0;
             letter = randomLetters.GetLetter();
             await Task.Run(() => this.Dispatcher.Invoke(() => { lblScore.Content = $"Score: {score.Show()}"; }));
-            //lblScore.Content = $"Score: {score.Show()}";
             lblletter.Content = $"Letter: {letter}";
             serialPort.WriteLine($"{letter}");
+        }
+        private void cbxMoeilijkheid_SelectionChanged(object sender, SelectionChangedEventArgs e) //moeilijkheidsgraad selecteren
+        {
+            if(cbxMoeilijkheid.SelectedItem.ToString() == "Easy")
+            {
+                _verminderingsGraad = 5;
+            }
+            else if(cbxMoeilijkheid.SelectedItem.ToString() == "Hard")
+            {
+                _verminderingsGraad = 25;
+            }
+            else if(cbxMoeilijkheid.SelectedItem.ToString() == "Gamer")
+            {
+                _verminderingsGraad = 50;
+            }
         }
     }
 }

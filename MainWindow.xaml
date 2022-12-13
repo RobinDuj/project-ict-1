@@ -30,5 +30,8 @@
                 <Label Name="lblletter" Content="Letter:" Margin="5,5,5,5" Grid.Column="1"></Label>
             </Border>
         </Grid>
+        <GroupBox Header="Kies de moeilijkheid" Margin="10">
+            <ComboBox Name="cbxMoeilijkheid" Margin="10" SelectionChanged="cbxMoeilijkheid_SelectionChanged"></ComboBox>
+        </GroupBox>
     </StackPanel>
 </Window>
