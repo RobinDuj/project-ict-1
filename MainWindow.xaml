@@ -7,10 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" SizeToContent="Height" Width="400" ResizeMode="NoResize" Closed="Window_Closed" Keyboard.KeyDown="Window_KeyDown">
     <StackPanel>
-        <GroupBox Header="Kies je poort" Margin="10">
+        <GroupBox Header="Kies je poort" Margin="5">
             <ComboBox Name="cbxPortName" Margin="10" SelectionChanged="cbxPortName_SelectionChanged"></ComboBox>
         </GroupBox>
-        <Grid>
+        <GroupBox Header="Kies de moeilijkheid" Margin="5">
+            <ComboBox Name="cbxMoeilijkheid" Margin="10" SelectionChanged="cbxMoeilijkheid_SelectionChanged" ></ComboBox>
+        </GroupBox>
+        <Grid Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -30,8 +33,7 @@
                 <Label Name="lblletter" Content="Letter:" Margin="5,5,5,5" Grid.Column="1"></Label>
             </Border>
         </Grid>
-        <GroupBox Header="Kies de moeilijkheid" Margin="10">
-            <ComboBox Name="cbxMoeilijkheid" Margin="10" SelectionChanged="cbxMoeilijkheid_SelectionChanged"></ComboBox>
-        </GroupBox>
+
+        <Label Content="Robin Dujardyn - ICT" HorizontalAlignment="Right" FontSize="8"></Label>
     </StackPanel>
 </Window>

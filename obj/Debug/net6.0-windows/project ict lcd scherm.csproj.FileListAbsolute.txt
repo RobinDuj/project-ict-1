@@ -1,0 +1,30 @@
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\bin\Debug\net6.0-windows\project ict lcd scherm.exe
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\bin\Debug\net6.0-windows\project ict lcd scherm.deps.json
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\bin\Debug\net6.0-windows\project ict lcd scherm.runtimeconfig.json
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\bin\Debug\net6.0-windows\project ict lcd scherm.dll
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\bin\Debug\net6.0-windows\project ict lcd scherm.pdb
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\bin\Debug\net6.0-windows\System.IO.Ports.dll
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\bin\Debug\net6.0-windows\runtimes\linux-arm\native\libSystem.IO.Ports.Native.so
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\bin\Debug\net6.0-windows\runtimes\linux-arm64\native\libSystem.IO.Ports.Native.so
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\bin\Debug\net6.0-windows\runtimes\linux-x64\native\libSystem.IO.Ports.Native.so
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\bin\Debug\net6.0-windows\runtimes\osx-arm64\native\libSystem.IO.Ports.Native.dylib
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\bin\Debug\net6.0-windows\runtimes\osx-x64\native\libSystem.IO.Ports.Native.dylib
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\bin\Debug\net6.0-windows\runtimes\unix\lib\net6.0\System.IO.Ports.dll
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.IO.Ports.dll
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict lcd scherm.csproj.AssemblyReference.cache
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict lcd scherm_MarkupCompile.cache
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict lcd scherm_MarkupCompile.lref
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\MainWindow.baml
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict lcd scherm.g.resources
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict lcd scherm.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict lcd scherm.AssemblyInfoInputs.cache
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict lcd scherm.AssemblyInfo.cs
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict lcd scherm.csproj.CoreCompileInputs.cache
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict lcd scherm.csproj.CopyComplete
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict lcd scherm.dll
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\refint\project ict lcd scherm.dll
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict lcd scherm.pdb
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\project ict lcd scherm.genruntimeconfig.cache
+C:\Users\robin\.git\project ict thomas is git\project ict thomas is git\obj\Debug\net6.0-windows\ref\project ict lcd scherm.dll

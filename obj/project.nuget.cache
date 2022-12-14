@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ofPt+C6HDxW7avc6HzCzy4BppvKlXZKHMr9BUNH5eZ23io+v8F9GPok3D+uRqWs10jVXj773h5+7MdZyYteX6Q==",
+  "dgSpecHash": "rMoCIZreEgQkIo5IcV3WSFDRUdqh60G8ZYqKyaPxo/scPBQ60bqznxQ2lL9rZZN9rAJ4S/pmre6kYgyKlqMJGg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\robin\\.git\\project ict thomas is git\\project ict thomas is git\\project ict thomas is git.csproj",
+  "projectFilePath": "C:\\Users\\robin\\.git\\project ict thomas is git\\project ict thomas is git\\project ict lcd scherm.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\robin\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\robin\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",

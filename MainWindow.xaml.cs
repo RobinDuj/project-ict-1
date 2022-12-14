@@ -95,7 +95,7 @@ namespace project_ict_thomas_is_git
         }
         private void btnStart_Click(object sender, RoutedEventArgs e)   //start het spel
         {
-            if ((i) && (serialPort != null) && (serialPort.IsOpen))
+            if ((i) && (serialPort != null) && (serialPort.IsOpen) && (cbxMoeilijkheid != null))
             {
                 serialPort.WriteLine("Welkom");
                 score.Null();
@@ -252,6 +252,11 @@ namespace project_ict_thomas_is_git
             else if(cbxMoeilijkheid.SelectedItem.ToString() == "Gamer")
             {
                 _verminderingsGraad = 50;
+            }
+            else
+            {
+                MessageBox.Show("Kies een Moeilijkheidsgraad.", "Fout",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
