@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project_ict_thomas_is_git"
         mc:Ignorable="d"
-        Title="MainWindow" SizeToContent="Height" Width="400" ResizeMode="NoResize" Closed="Window_Closed" Keyboard.KeyDown="Window_KeyDown">
+        Title="RandomsLetters" SizeToContent="Height" Width="400" ResizeMode="NoResize" Closed="Window_Closed" Keyboard.KeyDown="Window_KeyDown">
     <StackPanel>
         <GroupBox Header="Kies je poort" Margin="5">
             <ComboBox Name="cbxPortName" Margin="10" SelectionChanged="cbxPortName_SelectionChanged"></ComboBox>

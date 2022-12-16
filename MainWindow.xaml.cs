@@ -29,16 +29,17 @@ namespace project_ict_thomas_is_git
     public partial class MainWindow : Window
     {
         SerialPort serialPort = new SerialPort();
-        bool i = true;
-        bool spelBezig = false;
-        char letter;
-        int tijd = 0;
-        int tijdTimer;
-        int timerSpel;
+        bool _i = true;
+        bool _spelBezig = false;
+        char _letter;
+        char _textInput;
+        int _tijd = 0;
+        int _tijdTimer;
         int _verminderingsGraad;
         Score score = new Score();
         RandomLetters randomLetters = new RandomLetters();
         System.Timers.Timer aTimer = new System.Timers.Timer();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -48,10 +49,11 @@ namespace project_ict_thomas_is_git
             cbxMoeilijkheid.Items.Add("Gamer");
             foreach (string s in SerialPort.GetPortNames())
             cbxPortName.Items.Add(s);
-            tijdTimer = 400;
+            _tijdTimer = 400;
             aTimer.Elapsed += new ElapsedEventHandler(Timer_Tick);
-            aTimer.Interval = tijdTimer;
+            aTimer.Interval = _tijdTimer;
         }
+
         private void Window_Closed(object sender, EventArgs e) //Wanneer het programma wordt afgesloten
         {
             serialPort.WriteLine("Daaaag");
@@ -85,160 +87,170 @@ namespace project_ict_thomas_is_git
                     serialPort.PortName = cbxPortName.SelectedItem.ToString();
                     serialPort.Open();
                 }
-                else
-                {
-                    MessageBox.Show("Kies een COM-poort.", "Fout",
-                        MessageBoxButton.OK, MessageBoxImage.Error);
-                }
             }
-
         }
+
         private void btnStart_Click(object sender, RoutedEventArgs e)   //start het spel
         {
-            if ((i) && (serialPort != null) && (serialPort.IsOpen) && (cbxMoeilijkheid != null))
+            if ((_i) && (serialPort != null) && (serialPort.IsOpen) && (_verminderingsGraad != 0))
             {
                 serialPort.WriteLine("Welkom");
                 score.Null();
-                letter = randomLetters.GetLetter();
-                lblletter.Content = $"Letter: {letter}";
-                serialPort.WriteLine($"{letter}");
-                i = false;
-                spelBezig = true;
-                tijdTimer = 400;
+                _letter = randomLetters.GetLetter();
+                lblletter.Content = $"Letter: {_letter}";
+                serialPort.WriteLine($"{_letter}");
+                _i = false;
+                _spelBezig = true;
+                _tijdTimer = 400;
                 aTimer.Enabled = true;
-                lblletter.Content = $"Letter: {letter}";
+                aTimer.Interval = _tijdTimer;
+                lblletter.Content = $"Letter: {_letter}";
                 lblScore.Content = "Score:";
             }
-            
-        }        
+            else
+            {
+                _i = true;
+                _spelBezig = false;
+                MessageBox.Show("Vul alle velden in!", "Fout",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        
         private void Timer_Tick(object sender, EventArgs e)     //wanneer de tijd van de timer is gepasseerd
         {
-           if(spelBezig)
+           if(_spelBezig)
             inlezenCijfers();
         }
-        char textInput;
+
         private void inlezenCijfers()   //Toont de letter op het display
         {
-            if (textInput == letter)
+            if (_textInput == _letter)
             {
                 score.Verhogen();
                 VolgendLetterAsync();
             }
-            else if (tijd == 1)
+            else if (_tijd == 1)
             {
-                serialPort.WriteLine($" {letter}");
+                serialPort.WriteLine($" {_letter}");
             }
-            else if (tijd == 2)
+            else if (_tijd == 2)
             {
-                serialPort.WriteLine($"  {letter}");
+                serialPort.WriteLine($"  {_letter}");
             }
-            else if (tijd == 3)
+            else if (_tijd == 3)
             {
-                serialPort.WriteLine($"  {letter}");
+                serialPort.WriteLine($"  {_letter}");
             }
-            else if (tijd == 4)
+            else if (_tijd == 4)
             {
-                serialPort.WriteLine($"   {letter}");
+                serialPort.WriteLine($"   {_letter}");
             }
-            else if (tijd == 5)
+            else if (_tijd == 5)
             {
-                serialPort.WriteLine($"     {letter}");
+                serialPort.WriteLine($"     {_letter}");
             }
-            else if (tijd == 6)
+            else if (_tijd == 6)
             {
-                serialPort.WriteLine($"      {letter}");
+                serialPort.WriteLine($"      {_letter}");
             }
-            else if (tijd == 7)
+            else if (_tijd == 7)
             {
-                serialPort.WriteLine($"       {letter}");
+                serialPort.WriteLine($"       {_letter}");
             }
-            else if (tijd == 8)
+            else if (_tijd == 8)
             {
-                serialPort.WriteLine($"        {letter}");
+                serialPort.WriteLine($"        {_letter}");
             }
-            else if (tijd == 9)
+            else if (_tijd == 9)
             {
-                serialPort.WriteLine($"         {letter}");
+                serialPort.WriteLine($"         {_letter}");
             }
-            else if (tijd == 10)
+            else if (_tijd == 10)
             {
-                serialPort.WriteLine($"          {letter}");
+                serialPort.WriteLine($"          {_letter}");
             }
-            else if (tijd == 11)
+            else if (_tijd == 11)
             {
-                serialPort.WriteLine($"           {letter}");
+                serialPort.WriteLine($"           {_letter}");
             }
-            else if (tijd == 12)
+            else if (_tijd == 12)
             {
-                serialPort.WriteLine($"            {letter}");
+                serialPort.WriteLine($"            {_letter}");
             }
-            else if (tijd == 13)
+            else if (_tijd == 13)
             {
-                serialPort.WriteLine($"             {letter}");
+                serialPort.WriteLine($"             {_letter}");
             }
-            else if (tijd == 14)
+            else if (_tijd == 14)
             {
-                serialPort.WriteLine($"              {letter}");
+                serialPort.WriteLine($"              {_letter}");
             }
-            else if (tijd == 15)
+            else if (_tijd == 15)
             {
-                serialPort.WriteLine($"               {letter}");
+                serialPort.WriteLine($"               {_letter}");
             }
-            else if (tijd > 15)
+            else if (_tijd > 15)
             {
                 gameOverAsync();
             }
-            tijd++;
+            _tijd++;
         }
+
         private void btnStop_Click(object sender, RoutedEventArgs e)    //Stop het spel
         {
-            if ((serialPort != null) && (serialPort.IsOpen))
+            if ((serialPort != null) && (serialPort.IsOpen) && (_spelBezig = false))
             {
                 serialPort.WriteLine("Gestopt");
-                i = true;
-                spelBezig = false;
-                tijd = 0;
+                _i = true;
+                _spelBezig = false;
+                aTimer.Enabled = false;
+                _tijd = 0;
                 lblletter.Content = "Letter:";
             }
         }
+
         private void Window_KeyDown(object sender, KeyEventArgs e)      //Als er een toest is ingedrukt
         {
-            textInput = (char)KeyInterop.VirtualKeyFromKey(e.Key);
-            textInput = char.ToLower(textInput);
+            _textInput = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+            _textInput = char.ToLower(_textInput);
 
-            if ((textInput != letter) && (tijd >= 0))       //test =
+            if ((_textInput != _letter) && (_tijd >= 0))
             {
                 gameOverAsync();
             }
             inlezenCijfers();
         }
+
         private async Task gameOverAsync()
         {
             serialPort.WriteLine($"Score: {score.Show()}");
-            i = true;
-            spelBezig = false;
-            tijd = 0;
+            _i = true;
+            _spelBezig = false;
+            _tijd = 0;
+            aTimer.Enabled = false;
             await Task.Run(() => this.Dispatcher.Invoke(() => { lblletter.Content = "Game Over"; }));
-            tijdTimer = 400;
+            _tijdTimer = 400;
         }
+
         private async Task VolgendLetterAsync()     //toon het volgende random letter
         {
-            if(tijdTimer <= 20)
+            if(_tijdTimer <= 20)
             {
-                tijdTimer = 20;
-                aTimer.Interval = tijdTimer;
+                _tijdTimer = 20;
+                aTimer.Interval = _tijdTimer;
             }
             else
             {
-                tijdTimer = tijdTimer - _verminderingsGraad;
-                aTimer.Interval = tijdTimer;
+                _tijdTimer = _tijdTimer - _verminderingsGraad;
+                aTimer.Interval = _tijdTimer;
             }
-            tijd = 0;
-            letter = randomLetters.GetLetter();
+            _tijd = 0;
+            _letter = randomLetters.GetLetter();
             await Task.Run(() => this.Dispatcher.Invoke(() => { lblScore.Content = $"Score: {score.Show()}"; }));
-            lblletter.Content = $"Letter: {letter}";
-            serialPort.WriteLine($"{letter}");
+            lblletter.Content = $"Letter: {_letter}";
+            serialPort.WriteLine($"{_letter}");
         }
+
         private void cbxMoeilijkheid_SelectionChanged(object sender, SelectionChangedEventArgs e) //moeilijkheidsgraad selecteren
         {
             if(cbxMoeilijkheid.SelectedItem.ToString() == "Easy")
@@ -252,11 +264,6 @@ namespace project_ict_thomas_is_git
             else if(cbxMoeilijkheid.SelectedItem.ToString() == "Gamer")
             {
                 _verminderingsGraad = 50;
-            }
-            else
-            {
-                MessageBox.Show("Kies een Moeilijkheidsgraad.", "Fout",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
