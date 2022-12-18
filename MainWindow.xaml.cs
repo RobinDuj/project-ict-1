@@ -87,6 +87,11 @@ namespace project_ict_thomas_is_git
                     serialPort.PortName = cbxPortName.SelectedItem.ToString();
                     serialPort.Open();
                 }
+                else
+                {
+                    MessageBox.Show("Kies een COM-poort", "Fout",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
